@@ -239,6 +239,9 @@ PRODUCT_PACKAGES += \
     Iwlan \
     QualifiedNetworksService
 
+# JamesDSP
+$(call inherit-product, device/samsung/sm8550-common/audio/JamesDSP/config.mk)
+
 # Kernel
 PRODUCT_ENABLE_UFFD_GC := true
 

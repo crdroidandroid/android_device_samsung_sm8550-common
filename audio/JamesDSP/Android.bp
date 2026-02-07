@@ -1,0 +1,25 @@
+// Copyright (C) 2024 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+cc_prebuilt_library_shared {
+    name: "libjamesdsp",
+    srcs: ["lib64/soundfx/libjamesdsp.so"],
+    vendor: true,
+    relative_install_path: "soundfx",
+    installable: true,
+    check_elf_files: false,
+}
+
+android_app_import {
+    name: "JamesDSPManager",
+    owner: "James",
+    apk: "app/JamesDSPManagerThePBone.apk",
+    preprocessed: true,
+    presigned: true,
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+    skip_preprocessed_apk_checks: true,
+}
