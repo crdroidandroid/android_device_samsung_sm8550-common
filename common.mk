@@ -446,6 +446,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.samsung
 
+# ViperFX
+$(call inherit-product, device/samsung/sm8550-common/audio/ViperFX/config.mk)
+
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \

@@ -1,0 +1,25 @@
+// Copyright (C) 2024 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+cc_prebuilt_library_shared {
+    name: "libv4a_re",
+    srcs: ["lib64/libv4a_re.so"],
+    vendor: true,
+    relative_install_path: "soundfx",
+    installable: true,
+    check_elf_files: false,
+}
+
+android_app_import {
+    name: "ViPER4AndroidFX",
+    owner: "ViperFX",
+    apk: "app/ViPER4AndroidFX.apk",
+    preprocessed: true,
+    presigned: true,
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+    skip_preprocessed_apk_checks: true,
+}
