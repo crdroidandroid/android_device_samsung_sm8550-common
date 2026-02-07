@@ -221,6 +221,9 @@ PRODUCT_PACKAGES += \
     init.samsung.power.rc \
     init.samsung.rc
 
+# JamesDSP
+$(call inherit-product, device/samsung/sm8550-common/audio/JamesDSP/config.mk)
+
 # Kernel
 PRODUCT_ENABLE_UFFD_GC := true
 
