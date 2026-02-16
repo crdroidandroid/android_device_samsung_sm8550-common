@@ -262,8 +262,8 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
+    android.hardware.nfc-service.nxp \
     com.android.nfc_extras \
-    nqnfcinfo \
     Tag
 
 PRODUCT_COPY_FILES += \
