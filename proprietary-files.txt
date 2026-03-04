@@ -1,4 +1,4 @@
-# Unpinned blobs are extracted from S916BXXS8DYI3
+# All unpinned blobs are extracted from S916BXXS8EZA1
 
 # ADSP
 vendor/bin/adsprpcd
@@ -395,7 +395,6 @@ vendor/lib64/libswregistrationalgo.so
 vendor/lib64/libsynx.so
 vendor/lib64/libtensorflowLite.singletake.camera.samsung.so
 vendor/lib64/libtensorflowlite.camera.samsung.so
-vendor/lib64/libtensorflowlite_gpu.camera.samsung.so
 vendor/lib64/libtfestriping.so
 vendor/lib64/libtflitecore.so
 vendor/lib64/libthreadutils.so
@@ -690,7 +689,7 @@ vendor/lib64/hw/vulkan.adreno.so|0eaf3f68274da0d2b55a80cfd395232f6cd886f4
 vendor/bin/hermesd
 vendor/etc/init/hermesd.rc
 vendor/etc/secnvm/k250a_47000301_0.img
-vendor/etc/secnvm/k250a_47000304_c.img
+vendor/etc/secnvm/k250a_47000305_c.img
 vendor/etc/secnvm/k250a_47000306_1.img
 vendor/lib64/libese-grdg.so
 vendor/lib64/libhermes.so
@@ -1108,7 +1107,6 @@ vendor/etc/vintf/manifest/iweaver_v1_manifest.xml
 # WiFi
 vendor/bin/cnss-daemon
 vendor/bin/pktlogconf
-vendor/etc/wifi/indoorchannel.info
 
 # Widevine DRM
 vendor/bin/hw/android.hardware.drm-service.widevine
