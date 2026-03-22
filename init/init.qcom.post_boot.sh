@@ -5836,48 +5836,56 @@ adaptive_high_freq=1017600
 adaptive_high_freq_kernel=113600
 adaptive_low_freq=307200
 adaptive_low_freq_kernel=307200
-down_rate_limit_us=300
+down_rate_limit_us=3000
 hispeed_freq=1105000
 hispeed_load=22
-pl=0
+pl=1
 rtg_boost_freq=1200000
 target_load_shift=15
-target_load_thresh=0
-up_delay_freq=1836000
-up_rate_limit_us=200
+target_load_thresh=56789
+up_delay_freq=1436000
+up_rate_limit_us=578900
 "
 
 CPU3_NODES="
-adaptive_high_freq=1100010
-adaptive_high_freq_kernel=111360
+adaptive_high_freq=0
+adaptive_high_freq_kernel=0
 adaptive_low_freq=307200
 adaptive_low_freq_kernel=307200
 down_rate_limit_us=300
 hispeed_freq=1105000
-hispeed_load=70
+hispeed_load=50
 pl=1
 rtg_boost_freq=900000
 target_load_shift=777
 target_load_thresh=0
-up_delay_freq=1836000
+up_delay_freq=1436000
 up_rate_limit_us=200
 "
 
 CPU7_NODES="
-adaptive_high_freq=850000
-adaptive_high_freq_kernel=850000
+adaptive_high_freq=0
+adaptive_high_freq_kernel=0
 adaptive_low_freq=307200
 adaptive_low_freq_kernel=307200
 down_rate_limit_us=300
 hispeed_freq=1105000
-hispeed_load=70
+hispeed_load=50
 pl=1
 rtg_boost_freq=900000
 target_load_shift=777
 target_load_thresh=0
-up_delay_freq=1836000
+up_delay_freq=1436000
 up_rate_limit_us=200
 "
+
+# scaling minimum frequencies
+CPU0_MIN_FREQ=307200
+CPU5_MIN_FREQ=499200
+CPU7_MIN_FREQ=595000
+
+# cpuset restriction
+RESTRICTED_CPUSET="5-7"
 
 # =========================
 # setter with verification
@@ -5918,12 +5926,38 @@ apply_cpu() {
 }
 
 # =========================
+# cpuset special handler (hard lock)
+# =========================
+
+apply_cpuset_locked() {
+    NODE="/dev/cpuset/restricted/cpus"
+
+    while [ ! -e "$NODE" ]; do
+        sleep 1
+    done
+
+    # write once and lock
+    echo "$RESTRICTED_CPUSET" > "$NODE"
+    chmod 0440 "$NODE" 2>/dev/null
+}
+
+# =========================
 # apply
 # =========================
 
 sleep 2
+
+# apply WALT governor settings
 apply_cpu cpu0 "$CPU0_NODES"
 apply_cpu cpu3 "$CPU3_NODES"
 apply_cpu cpu7 "$CPU7_NODES"
+
+# apply scaling minimum frequencies (no verifier)
+echo "$CPU0_MIN_FREQ" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+echo "$CPU5_MIN_FREQ" > /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq
+echo "$CPU7_MIN_FREQ" > /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq
+
+# apply cpuset restriction with lock (chmod 0440)
+apply_cpuset_locked
 
 # End of CPU walt governor tweaks
