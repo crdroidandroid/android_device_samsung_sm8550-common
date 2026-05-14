@@ -225,6 +225,17 @@ PRODUCT_PACKAGES += \
 # JamesDSP
 $(call inherit-product, device/samsung/sm8550-common/audio/JamesDSP/config.mk)
 
+# IMS over Wi-Fi data service and network qualification service.
+# These are also useful for VoLTE-only bring-up because the telephony
+# framework still expects the WLAN data/network service hooks to exist.
+PRODUCT_PACKAGES += \
+    Iwlan \
+    QualifiedNetworksService \
+    PhhIms
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/privapp-permissions-me.phh.ims.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-me.phh.ims.xml
+
 # Kernel
 PRODUCT_ENABLE_UFFD_GC := true
 
