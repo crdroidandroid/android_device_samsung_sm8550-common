@@ -5832,19 +5832,21 @@ setprop persist.vendor.mmi.misc_dev_path $real_path
 # =========================
 
 CPU0_NODES="
-adaptive_high_freq=1017600
-adaptive_high_freq_kernel=113600
+adaptive_high_freq=0
+adaptive_high_freq_kernel=0
 adaptive_low_freq=307200
 adaptive_low_freq_kernel=307200
-down_rate_limit_us=3000
+cpu0_volt_margin_pct=80
+cpu0_eff_limit=1901000
+down_rate_limit_us=5500
 hispeed_freq=1105000
-hispeed_load=22
+hispeed_load=20
 pl=1
-rtg_boost_freq=1200000
+rtg_boost_freq=1100000
 target_load_shift=15
-target_load_thresh=56789
-up_delay_freq=1436000
-up_rate_limit_us=578900
+target_load_thresh=0
+up_delay_freq=0
+up_rate_limit_us=0
 "
 
 CPU3_NODES="
@@ -5852,15 +5854,17 @@ adaptive_high_freq=0
 adaptive_high_freq_kernel=0
 adaptive_low_freq=307200
 adaptive_low_freq_kernel=307200
-down_rate_limit_us=300
+cpu3_eff_limit=35
+cpu3_eff_limit=2050400
+down_rate_limit_us=180
 hispeed_freq=1105000
-hispeed_load=50
+hispeed_load=55
 pl=1
 rtg_boost_freq=900000
 target_load_shift=777
 target_load_thresh=0
-up_delay_freq=1436000
-up_rate_limit_us=200
+up_delay_freq=0
+up_rate_limit_us=0
 "
 
 CPU7_NODES="
@@ -5868,9 +5872,11 @@ adaptive_high_freq=0
 adaptive_high_freq_kernel=0
 adaptive_low_freq=307200
 adaptive_low_freq_kernel=307200
-down_rate_limit_us=300
+cpu7_eff_limit=38
+cpu7_eff_limit=2323000
+down_rate_limit_us=220
 hispeed_freq=1105000
-hispeed_load=50
+hispeed_load=55
 pl=1
 rtg_boost_freq=900000
 target_load_shift=777
@@ -5880,9 +5886,9 @@ up_rate_limit_us=200
 "
 
 # scaling minimum frequencies
-CPU0_MIN_FREQ=307200
-CPU5_MIN_FREQ=499200
-CPU7_MIN_FREQ=595000
+CPU0_MIN_FREQ=672000
+CPU5_MIN_FREQ=729600
+CPU7_MIN_FREQ=998000
 
 # cpuset restriction
 RESTRICTED_CPUSET="5-7"
@@ -5921,7 +5927,7 @@ apply_cpu() {
 
     echo "$LIST" | while IFS='=' read -r KEY VAL; do
         [ -z "$KEY" ] && continue
-        set_and_verify "/sys/devices/system/cpu/${CPU}/cpufreq/walt/${KEY}" "$VAL"
+        set_and_verify "/sys/devices/system/cpu/${CPU}/cpufreq/superwalt/${KEY}" "$VAL"
     done
 }
 
@@ -5956,8 +5962,5 @@ apply_cpu cpu7 "$CPU7_NODES"
 echo "$CPU0_MIN_FREQ" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 echo "$CPU5_MIN_FREQ" > /sys/devices/system/cpu/cpu5/cpufreq/scaling_min_freq
 echo "$CPU7_MIN_FREQ" > /sys/devices/system/cpu/cpu7/cpufreq/scaling_min_freq
-
-# apply cpuset restriction with lock (chmod 0440)
-apply_cpuset_locked
 
 # End of CPU walt governor tweaks
