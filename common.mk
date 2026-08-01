@@ -150,6 +150,7 @@ PRODUCT_PACKAGES += \
 
 # EUICC
 PRODUCT_PACKAGES += \
+    SamsungEsimSwitcher \
     SamsungEuicc
 
 PRODUCT_COPY_FILES += \
