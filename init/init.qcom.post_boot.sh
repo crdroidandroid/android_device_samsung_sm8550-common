@@ -5953,6 +5953,11 @@ apply_cpuset_locked() {
 
 sleep 2
 
+# set scaling governor to superwalt first
+set_and_verify "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor" "superwalt"
+set_and_verify "/sys/devices/system/cpu/cpu3/cpufreq/scaling_governor" "superwalt"
+set_and_verify "/sys/devices/system/cpu/cpu7/cpufreq/scaling_governor" "superwalt"
+
 # apply WALT governor settings
 apply_cpu cpu0 "$CPU0_NODES"
 apply_cpu cpu3 "$CPU3_NODES"
