@@ -166,17 +166,40 @@
     </effects>
     <postprocess>
         <stream type="music">
+            <apply effect="dlb_music_listener"/>
+            <apply effect="jamesdsp"/>
             <apply effect="sa3d"/>
-        </stream>
-        <stream type="ring">
-            <apply effect="sa3d"/>
-        </stream>
-        <stream type="alarm">
-            <apply effect="sa3d"/>
-        </stream>
-        <stream type="voice_call">
+            <apply effect="v4a_standard_re"/>
         </stream>
         <stream type="notification">
+            <apply effect="dlb_notification_listener"/>
+            <apply effect="jamesdsp"/>
+            <apply effect="sa3d"/>
+            <apply effect="v4a_standard_re"/>
+        </stream>
+        <stream type="ring">
+            <apply effect="dlb_ring_listener"/>
+            <apply effect="jamesdsp"/>
+            <apply effect="sa3d"/>
+            <apply effect="v4a_standard_re"/>
+        </stream>
+        <stream type="system">
+            <apply effect="dlb_system_listener"/>
+            <apply effect="jamesdsp"/>
+            <apply effect="sa3d"/>
+            <apply effect="v4a_standard_re"/>
+        </stream>
+        <stream type="alarm">
+            <apply effect="dlb_alarm_listener"/>
+            <apply effect="jamesdsp"/>
+            <apply effect="sa3d"/>
+            <apply effect="v4a_standard_re"/>
+        </stream>
+        <stream type="voice_call">
+            <apply effect="dlb_voice_call_listener"/>
+            <apply effect="jamesdsp"/>
+            <apply effect="sa3d"/>
+            <apply effect="v4a_standard_re"/>
         </stream>
     </postprocess>
     <preprocess>
