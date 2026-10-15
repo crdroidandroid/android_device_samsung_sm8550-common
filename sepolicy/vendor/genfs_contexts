@@ -24,6 +24,9 @@ genfscon sysfs "/devices/virtual/camera/rear/ssrm_camera_info"    u:object_r:ven
 # Charging Control
 genfscon sysfs "/class/power_supply/battery/batt_slate_mode"      u:object_r:vendor_sysfs_battery:s0
 
+# Digital hall
+genfscon sysfs "/devices/virtual/sec/digital_hall"                u:object_r:vendor_sysfs_digital_hall:s0
+
 # Display
 genfscon sysfs "/devices/virtual/lcd/panel"                       u:object_r:vendor_sysfs_display:s0
 genfscon sysfs "/devices/virtual/mdnie"                           u:object_r:vendor_sysfs_mdnie:s0

@@ -158,8 +158,11 @@ on boot
     chown system radio /sys/class/sec/switch/afc_disable
     chmod 0664 /sys/class/sec/switch/afc_disable
 
-on charger
-    restart vendor.charger
+# Digital hall switch thresholds, needed for the folder hall IC to report folding
+on property:vendor.all.modules.ready=1 && property:vold.post_fs_data_done=1
+    # init refuses to copy group writable files
+    chmod 0644 /efs/FactoryApp/digital_hall
+    copy /efs/FactoryApp/digital_hall /sys/devices/virtual/sec/digital_hall/digital_hall_thd
 
 # For CDSP crash
 on property:ro.boot.debug_level=0x494d

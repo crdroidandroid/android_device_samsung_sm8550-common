@@ -14,6 +14,9 @@ type vendor_sysfs_camera_writable, fs_type, sysfs_type;
 type vendor_sysfs_display, fs_type, sysfs_type;
 type vendor_sysfs_mdnie, fs_type, sysfs_type;
 
+# Digital hall
+type vendor_sysfs_digital_hall, fs_type, sysfs_type;
+
 # EFS
 type app_efs_file, file_type;
 type battery_efs_file, file_type;
