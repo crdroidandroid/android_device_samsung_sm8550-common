@@ -229,17 +229,6 @@ PRODUCT_PACKAGES += \
     init.samsung.power.rc \
     init.samsung.rc
 
-# AOSP userspace IMS and framework bearer services
-$(call inherit-product, packages/modules/ImsMedia/imsmedia.mk)
-$(call soong_config_set,imsstack_namespace,use_carrier_config_ext,true)
-$(call soong_config_set_bool,imsstack_namespace,use_android16_telephony_compat,true)
-
-PRODUCT_PACKAGES += \
-    ImsStack \
-    ImsStackOverlay \
-    Iwlan \
-    QualifiedNetworksService
-
 # JamesDSP
 $(call inherit-product, device/samsung/sm8550-common/audio/JamesDSP/config.mk)
 
@@ -298,8 +287,7 @@ PRODUCT_SOONG_NAMESPACES += \
      hardware/google/pixel/power-libperfmgr \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client \
-    hardware/samsung \
-    vendor/lineage/imsstack-carrier-config-ext
+    hardware/samsung
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
